@@ -55,7 +55,7 @@ export default class HomeScreen extends React.Component {
             placeholder={'Find a nation'}
           />
           <Button
-            title={'Press Me'}
+            title={'Search'}
             onPress={this.searchNation}
             style={styles.button}
           />
@@ -72,7 +72,7 @@ export default class HomeScreen extends React.Component {
             >
             <View style={styles.row}>
             <View>
-              <Image style={{ width: 80, height: 80 }}
+              <Image style={styles.flag}
                 source={{uri: `https://www.countryflags.io/${arg.item.alpha2Code}/flat/64.png`}}/>
               </View>
                 <View style={styles.info}>
@@ -99,12 +99,13 @@ const styles = StyleSheet.create({
     flexDirection:'row',
     alignItems:'stretch',
     borderBottomColor:'#333',
+    marginBottom:15,
   },
   info: {
     textAlign:'left',
   },
   nations: {
-    fontSize:24,
+    fontSize:20,
     marginBottom:5,
   },
   flag: {
@@ -116,6 +117,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'stretch',
     marginBottom:20,
+    marginTop:10,
+    marginRight:10,
   },
   textInput: {
     height: 40,
