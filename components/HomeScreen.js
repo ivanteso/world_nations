@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, FlatList, Image} from 'react-native';
+import {Platform, StyleSheet, Text, View, FlatList, SearchBar, Image} from 'react-native';
 
 export default class HomeScreen extends React.Component {
 
@@ -9,7 +9,9 @@ export default class HomeScreen extends React.Component {
 
   state = {
     nations: [],
+    
   }
+  inputText = '';
 
   componentDidMount() {
     fetch('https://restcountries.eu/rest/v2/all')
@@ -19,10 +21,22 @@ export default class HomeScreen extends React.Component {
       });
   }
 
+  handleChangeSearch = (event) => {
+    this.setState({countryFilter: event.target.value})
+  }
+
   render() {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>World Nations</Text>
+        <SearchBar
+        showLoading
+        onChangeText={text => {
+          this.inputText = text;
+        }}
+        placeholder='Search'
+       >
+       </SearchBar>
         <FlatList
           data={ this.state.nations}
           keyExtractor={(item, index) => index.toString()}
