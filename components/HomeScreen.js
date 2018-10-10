@@ -30,11 +30,7 @@ export default class HomeScreen extends React.Component {
               <Text style={styles.nations}>{arg.item.name}</Text>
               <SVGImage style={{ width: 80, height: 80 }}
       source={{uri:arg.item.flag}}/>
-              {
-                arg.item.borders.map(border => {
-                  return <Text style={styles.text}>{border}</Text>
-                })
-              }
+              <Text>{arg.item.capital}</Text>
 
             </View>
           }
