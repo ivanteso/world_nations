@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import {Platform, StyleSheet, Text, View, FlatList, Image} from 'react-native';
+import SVGImage from 'react-native-svg-image';
 import {Platform, StyleSheet, Text, View, FlatList, Image, TextInput, Button} from 'react-native';
 
 export default class HomeScreen extends React.Component {
@@ -65,11 +67,9 @@ export default class HomeScreen extends React.Component {
           renderItem={arg =>
             <View>
               <Text style={styles.nations}>{arg.item.name}</Text>
-              {
-                arg.item.borders.map(border => {
-                  return <Text style={styles.text}>{border}</Text>
-                })
-              }
+              <SVGImage style={{ width: 80, height: 80 }}
+      source={{uri:arg.item.flag}}/>
+              <Text>{arg.item.capital}</Text>
 
             </View>
           }
