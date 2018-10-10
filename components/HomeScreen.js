@@ -48,13 +48,25 @@ export default class HomeScreen extends React.Component {
             onChangeText={text => {
               this.setState({ query: text})
             }}
+<<<<<<< HEAD
             value={ this.state.query }
             style={styles.input}
+||||||| merged common ancestors
+            style={styles.input}
+=======
+>>>>>>> 71d4ddfbcf006098f067a4efa079fdd9c8b0958b
             placeholder={'Find a nation'}
           />
           <Button
+<<<<<<< HEAD
             title={'Press Me'}
             onPress={this.searchNation}
+||||||| merged common ancestors
+            title={'Press Me'}
+=======
+            title="Press me"
+            style={styles.button}
+>>>>>>> 71d4ddfbcf006098f067a4efa079fdd9c8b0958b
           />
 
         </View>
@@ -82,27 +94,29 @@ export default class HomeScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
+    marginLeft:10,
   },
   nations: {
-    fontSize:60,
-    alignSelf:'center',
+    fontSize:24,
+    alignItems:'flex-start',
+    marginBottom:5,
   },
   search: {
     flexDirection: 'row',
-    margin: 20
+    alignItems: 'stretch'
   },
   textInput: {
     height: 40,
     fontSize: 18,
-    flex: 2
+    flex:1,
   },
-  buttonContainer: {
-    flex: 1
+  button: {
+    flex:2,
   },
   text: {
     fontSize: 18,
-    alignSelf:'center',
+    alignSelf:'flex-start',
   }
 });
