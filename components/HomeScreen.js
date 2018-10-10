@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, FlatList, Image} from 'react-native';
+import {Platform, StyleSheet, Text, View, FlatList, Image, TextInput, Button} from 'react-native';
 
 export default class HomeScreen extends React.Component {
 
@@ -9,7 +9,10 @@ export default class HomeScreen extends React.Component {
 
   state = {
     nations: [],
+    query: ''
   }
+
+  textInputRef = React.createRef();
 
   componentDidMount() {
     fetch('https://restcountries.eu/rest/v2/all')
@@ -22,6 +25,23 @@ export default class HomeScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+
+        <View style={styles.search}>
+          <TextInput
+            ref={this.textInputRef}
+            style={styles.textInput}
+            onChangeText={text => {
+              this.setState({ query: text})
+            }}
+            style={styles.input}
+            placeholder={'Find a nation'}
+          />
+          <Button
+            title={'Press Me'}
+          />
+
+        </View>
+
         <FlatList
           data={ this.state.nations}
           keyExtractor={(item, index) => index.toString()}
@@ -51,6 +71,18 @@ const styles = StyleSheet.create({
   nations: {
     fontSize:60,
     alignSelf:'center',
+  },
+  search: {
+    flexDirection: 'row',
+    margin: 20
+  },
+  textInput: {
+    height: 40,
+    fontSize: 18,
+    flex: 2
+  },
+  buttonContainer: {
+    flex: 1
   },
   text: {
     fontSize: 18,
