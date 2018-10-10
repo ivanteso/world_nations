@@ -15,6 +15,10 @@ export default class HomeScreen extends React.Component {
   textInputRef = React.createRef();
 
   componentDidMount() {
+    this.catchAllNations()
+  }
+
+  catchAllNations = () => {
     fetch('https://restcountries.eu/rest/v2/all')
       .then(res => res.json())
       .then(json => {
@@ -57,6 +61,11 @@ export default class HomeScreen extends React.Component {
           <Button
             title={'Press Me'}
             onPress={this.searchNation}
+            style={styles.button}
+          />
+          <Button
+            title={'Get All'}
+            onPress={this.catchAllNations}
             style={styles.button}
           />
         </View>
