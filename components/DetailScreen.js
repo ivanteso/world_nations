@@ -30,7 +30,8 @@ export default class DetailScreen extends React.Component {
         <Text>{nativeName}</Text>
         {
           timezones.map(timezone =>
-            <Text>{timezone}</Text>
+            <Text
+              key={(timezone, index) => index.toString()}>{timezone}</Text>
           )
         }
 

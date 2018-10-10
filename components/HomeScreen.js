@@ -58,16 +58,19 @@ export default class HomeScreen extends React.Component {
             value={ this.state.query }
             placeholder={'Find a nation'}
           />
-          <Button
-            title={'Search'}
-            onPress={this.searchNation}
-            style={styles.button}
-          />
-          <Button
-            title={'Get All'}
-            onPress={this.catchAllNations}
-            style={styles.button}
-          />
+          <View style={styles.button}>
+            <Button
+              title={'Search'}
+              onPress={this.searchNation}
+            />
+          </View>
+          <View style={styles.button}>
+            <Button
+              color='black'
+              title={'Get All'}
+              onPress={this.catchAllNations}
+            />
+          </View>
         </View>
 
 
@@ -102,13 +105,18 @@ const styles = StyleSheet.create({
   container: {
     alignItems: 'flex-start',
     justifyContent: 'flex-start',
-    marginLeft:10,
+    backgroundColor: 'lightblue'
   },
   row: {
     flexDirection:'row',
     alignItems:'stretch',
+    marginLeft:10,
+    marginRight: 50,
     borderBottomColor:'#333',
-    marginBottom:15,
+    borderStyle: 'solid',
+    borderBottomWidth: 1,
+    paddingTop: 15,
+    paddingBottom: 15,
   },
   info: {
     textAlign:'left',
@@ -127,7 +135,6 @@ const styles = StyleSheet.create({
     alignItems: 'stretch',
     marginBottom:20,
     marginTop:10,
-    marginRight:10,
   },
   textInput: {
     height: 40,
@@ -135,7 +142,8 @@ const styles = StyleSheet.create({
     flex:1,
   },
   button: {
-    flex:2,
+    width: 80,
+    marginRight: 5,
   },
   text: {
     fontSize: 18,
