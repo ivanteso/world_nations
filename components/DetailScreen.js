@@ -17,6 +17,9 @@ export default class DetailScreen extends React.Component {
   render() {
     const { navigation } = this.props;
     const name = navigation.getParam('name');
+    const latlng = navigation.getParam('latlng');
+    const lat = latlng[0];
+    const lng = latlng[1];
     const region = navigation.getParam('region');
     const area = navigation.getParam('area');
     const population = navigation.getParam('population');
@@ -33,7 +36,7 @@ export default class DetailScreen extends React.Component {
               source={{uri: `https://www.countryflags.io/${alpha2Code}/flat/64.png`}}/>
             <Text style={styles.textCountryName}>{name}</Text>
           </View>
-          <View style={{marginTop: 40, marginBottom: 40}}>
+          <View style={{marginTop: 40, marginBottom: 10}}>
             <Text style={styles.text}>Capital: {capital}</Text>
             <Text style={styles.text}>Region: {region}</Text>
             <Text style={styles.text}>Population: {population}</Text>
@@ -45,6 +48,8 @@ export default class DetailScreen extends React.Component {
                 <Text style={styles.text} key={id}>{timezone}</Text>
               )
             }
+            <Image style={{ width: 300, height: 300 }}
+              source={{uri: `https://maps.googleapis.com/maps/api/staticmap?center=${lat},${lng}&zoom=5&size=400x400&key=AIzaSyCCBV9oyPq_t-0_3jAvcye7CBcCkQo3ZOM`}}/>
           </View>
         </View>
       </ScrollView>
