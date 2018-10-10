@@ -22,6 +22,17 @@ export default class HomeScreen extends React.Component {
       });
   }
 
+  searchNation = () => {
+    this.textInputRef.current.clear();
+    const query = this.state.query;
+    fetch(`https://restcountries.eu/rest/v2/name/${query}`)
+      .then(res => res.json())
+      .then(json => {
+        this.setState({ nations: json });
+      });
+
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -33,11 +44,13 @@ export default class HomeScreen extends React.Component {
             onChangeText={text => {
               this.setState({ query: text})
             }}
+            value={ this.state.query }
             style={styles.input}
             placeholder={'Find a nation'}
           />
           <Button
             title={'Press Me'}
+            onPress={this.searchNation}
           />
 
         </View>
