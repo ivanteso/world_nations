@@ -65,7 +65,7 @@ export default class HomeScreen extends React.Component {
 
         <FlatList
           data={ this.state.nations}
-          keyExtractor={(item, index) => index.toString()}
+          keyExtractor={(item, index) => item.alpha3Code}
           renderItem={arg =>
             <TouchableOpacity
               onPress={() => this.props.navigation.navigate('Details', arg.item )}
