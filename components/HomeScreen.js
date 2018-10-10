@@ -4,7 +4,7 @@ import {Platform, StyleSheet, Text, View, FlatList, Image} from 'react-native';
 export default class HomeScreen extends React.Component {
 
   static navigationOptions = {
-    title: 'Home',
+    title: 'World Nations',
   };
 
   state = {
@@ -22,7 +22,6 @@ export default class HomeScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>World Nations</Text>
         <FlatList
           data={ this.state.nations}
           keyExtractor={(item, index) => index.toString()}
@@ -48,14 +47,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  welcome: {
-    fontSize:30,
-    color:'darkgray',
-    textTransform: 'uppercase',
-    textAlign:'center',
-    letterSpacing:1,
-    margin:30,
   },
   nations: {
     fontSize:60,
