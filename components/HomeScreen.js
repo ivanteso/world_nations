@@ -1,18 +1,12 @@
-/**
- World Countries app
- */
-
 import React, {Component} from 'react';
-<<<<<<< HEAD
-import {Platform, StyleSheet, Text, View, FlatList, Image, Button, TextInput} from 'react-native';
-=======
 import {Platform, StyleSheet, Text, View, FlatList, Image} from 'react-native';
-import {createStackNavigator} from 'react-navigation';
-import HomeScreen from './components/HomeScreen'
->>>>>>> 76f8dd37f740f83cf4ecf8c5c0091cd9a2cd342e
 
+export default class HomeScreen extends React.Component {
 
-<<<<<<< HEAD
+  static navigationOptions = {
+    title: 'Home',
+  };
+
   state = {
     nations: [],
   }
@@ -28,7 +22,7 @@ import HomeScreen from './components/HomeScreen'
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>WORLD NATIONS</Text>
+        <Text style={styles.welcome}>World Nations</Text>
         <FlatList
           data={ this.state.nations}
           keyExtractor={(item, index) => index.toString()}
@@ -55,33 +49,20 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  row: {
-    flexDirection:'row',
-  },
-  flag: {
-    width:75,
-    height:50,
-  },
   welcome: {
-    fontSize:24,
+    fontSize:30,
     color:'darkgray',
     textTransform: 'uppercase',
     textAlign:'center',
     letterSpacing:1,
-    margin:10,
+    margin:30,
   },
   nations: {
     fontSize:60,
     alignSelf:'center',
-=======
-export default createStackNavigator(
-  {
-    Home: {
-      screen: HomeScreen,
-    }
->>>>>>> 76f8dd37f740f83cf4ecf8c5c0091cd9a2cd342e
   },
-  {
-    initialRouteName: 'Home',
+  text: {
+    fontSize: 18,
+    alignSelf:'center',
   }
-);
+});
