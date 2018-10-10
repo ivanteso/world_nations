@@ -8,7 +8,6 @@ import HomeScreen from './components/HomeScreen'
 import DetailScreen from './components/DetailScreen'
 
 
-
 export default createStackNavigator(
   {
     Home: {

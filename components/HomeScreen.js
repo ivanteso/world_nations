@@ -5,6 +5,13 @@ export default class HomeScreen extends React.Component {
 
   static navigationOptions = {
     title: 'World Nations',
+    headerStyle: {
+      backgroundColor: '#16425B'
+    },
+    headerTitleStyle: {
+      color: '#D9DCD6'
+    },
+    headerTintColor: '#D9DCD6'
   };
 
   state = {
@@ -46,6 +53,7 @@ export default class HomeScreen extends React.Component {
 
   render() {
     return (
+
       <View style={styles.container}>
 
         <View style={styles.search}>
@@ -60,6 +68,7 @@ export default class HomeScreen extends React.Component {
           />
           <View style={styles.button}>
             <Button
+              color='#2F6690'
               title={'Search'}
               onPress={this.searchNation}
             />
@@ -76,20 +85,20 @@ export default class HomeScreen extends React.Component {
 
 
         <FlatList
+          style={styles.flatList}
           data={ this.state.nations}
           keyExtractor={(item, index) => item.alpha3Code}
           renderItem={arg =>
             <TouchableOpacity
               onPress={() => this.props.navigation.navigate('Details', arg.item )}
             >
-            <View style={styles.row}>
-            <View>
-              <Image style={styles.flag}
-                source={{uri: `https://www.countryflags.io/${arg.item.alpha2Code}/flat/64.png`}}/>
-              </View>
+              <View style={styles.row}>
+                <Image style={styles.flag}
+                  source={{uri: `https://www.countryflags.io/${arg.item.alpha2Code}/flat/64.png`}}/>
+
                 <View style={styles.info}>
-                <Text style={styles.nations}>{arg.item.name}</Text>
-                <Text>{arg.item.capital}</Text>
+                  <Text style={styles.nations} numberOfLines={1}>{arg.item.name}</Text>
+                  <Text>{arg.item.capital}</Text>
                 </View>
                 </View>
 
@@ -105,25 +114,34 @@ const styles = StyleSheet.create({
   container: {
     alignItems: 'flex-start',
     justifyContent: 'flex-start',
-    backgroundColor: 'lightblue'
+    backgroundColor: '#B7CFDE',
+    flex: 1,
+  },
+  flatList: {
+    alignSelf: 'stretch'
   },
   row: {
     flexDirection:'row',
     alignItems:'stretch',
+    alignSelf: 'stretch',
     marginLeft:10,
-    marginRight: 50,
-    borderBottomColor:'#333',
+    marginRight: 10,
+    borderBottomColor:'#93B7CD',
     borderStyle: 'solid',
     borderBottomWidth: 1,
     paddingTop: 15,
     paddingBottom: 15,
   },
   info: {
-    textAlign:'left',
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignItems: 'stretch'
   },
   nations: {
     fontSize:20,
     marginBottom:5,
+    flex: 1
   },
   flag: {
     width:80,
@@ -133,8 +151,8 @@ const styles = StyleSheet.create({
   search: {
     flexDirection: 'row',
     alignItems: 'stretch',
-    marginBottom:20,
-    marginTop:10,
+    padding:10,
+    backgroundColor: '#A5C3D6'
   },
   textInput: {
     height: 40,
@@ -144,6 +162,7 @@ const styles = StyleSheet.create({
   button: {
     width: 80,
     marginRight: 5,
+    borderRadius: 10,
   },
   text: {
     fontSize: 18,
