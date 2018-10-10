@@ -3,7 +3,7 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, FlatList, Image} from 'react-native';
+import {Platform, StyleSheet, Text, View, FlatList, Image, Button, TextInput} from 'react-native';
 
 export default class App extends React.Component {
 
@@ -22,7 +22,7 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>World Nations</Text>
+        <Text style={styles.welcome}>WORLD NATIONS</Text>
         <FlatList
           data={ this.state.nations}
           keyExtractor={(item, index) => index.toString()}
@@ -49,13 +49,20 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  row: {
+    flexDirection:'row',
+  },
+  flag: {
+    width:75,
+    height:50,
+  },
   welcome: {
-    fontSize:30,
+    fontSize:24,
     color:'darkgray',
     textTransform: 'uppercase',
     textAlign:'center',
     letterSpacing:1,
-    margin:30,
+    margin:10,
   },
   nations: {
     fontSize:60,
