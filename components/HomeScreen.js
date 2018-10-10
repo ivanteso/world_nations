@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, FlatList, Image} from 'react-native';
 import SVGImage from 'react-native-svg-image';
+import {Platform, StyleSheet, Text, View, FlatList, Image, TextInput, Button} from 'react-native';
+
 export default class HomeScreen extends React.Component {
 
   static navigationOptions = {
@@ -9,7 +11,10 @@ export default class HomeScreen extends React.Component {
 
   state = {
     nations: [],
+    query: ''
   }
+
+  textInputRef = React.createRef();
 
   componentDidMount() {
     fetch('https://restcountries.eu/rest/v2/all')
@@ -19,9 +24,43 @@ export default class HomeScreen extends React.Component {
       });
   }
 
+  searchNation = () => {
+    this.textInputRef.current.clear();
+    const query = this.state.query;
+    fetch(`https://restcountries.eu/rest/v2/name/${query}`)
+      .then(res => res.json())
+      .then(json => {
+        if (json.status === 404) {
+          alert('Not found')
+          return;
+        }
+        this.setState({ nations: json });
+      });
+
+  }
+
   render() {
     return (
       <View style={styles.container}>
+
+        <View style={styles.search}>
+          <TextInput
+            ref={this.textInputRef}
+            style={styles.textInput}
+            onChangeText={text => {
+              this.setState({ query: text})
+            }}
+            value={ this.state.query }
+            placeholder={'Find a nation'}
+          />
+          <Button
+            title={'Press Me'}
+            onPress={this.searchNation}
+            style={styles.button}
+          />
+
+        </View>
+
         <FlatList
           data={ this.state.nations}
           keyExtractor={(item, index) => index.toString()}
@@ -43,15 +82,29 @@ export default class HomeScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
+    marginLeft:10,
   },
   nations: {
-    fontSize:60,
-    alignSelf:'center',
+    fontSize:24,
+    alignItems:'flex-start',
+    marginBottom:5,
+  },
+  search: {
+    flexDirection: 'row',
+    alignItems: 'stretch'
+  },
+  textInput: {
+    height: 40,
+    fontSize: 18,
+    flex:1,
+  },
+  button: {
+    flex:2,
   },
   text: {
     fontSize: 18,
-    alignSelf:'center',
+    alignSelf:'flex-start',
   }
 });
