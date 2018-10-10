@@ -28,6 +28,10 @@ export default class HomeScreen extends React.Component {
     fetch(`https://restcountries.eu/rest/v2/name/${query}`)
       .then(res => res.json())
       .then(json => {
+        if (json.status === 404) {
+          alert('Not found')
+          return;
+        }
         this.setState({ nations: json });
       });
 
