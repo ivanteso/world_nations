@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, FlatList, Image} from 'react-native';
 import SVGImage from 'react-native-svg-image';
 import {Platform, StyleSheet, Text, View, FlatList, Image, TextInput, Button} from 'react-native';
 
