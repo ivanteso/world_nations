@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import SVGImage from 'react-native-svg-image';
-import {Platform, StyleSheet, Text, View, FlatList, Image, TextInput, Button} from 'react-native';
+import {Platform, StyleSheet, Text, View, FlatList, Image, TextInput, Button, TouchableOpacity } from 'react-native';
 
 export default class HomeScreen extends React.Component {
 
@@ -27,14 +26,17 @@ export default class HomeScreen extends React.Component {
     this.textInputRef.current.clear();
     const query = this.state.query;
     fetch(`https://restcountries.eu/rest/v2/name/${query}`)
-      .then(res => res.json())
-      .then(json => {
-        if (json.status === 404) {
-          alert('Not found')
-          return;
-        }
-        this.setState({ nations: json });
-      });
+    .then(res => res.json())
+    .then(json => {
+      if (json.status === 404) {
+        alert('Not found')
+        return;
+      }
+      this.setState({ nations: json });
+    });
+  }
+
+  goToDetails = () => {
 
   }
 
@@ -57,20 +59,25 @@ export default class HomeScreen extends React.Component {
             onPress={this.searchNation}
             style={styles.button}
           />
-
         </View>
+
+
 
         <FlatList
           data={ this.state.nations}
           keyExtractor={(item, index) => index.toString()}
           renderItem={arg =>
-            <View>
-              <Text style={styles.nations}>{arg.item.name}</Text>
-              <SVGImage style={{ width: 80, height: 80 }}
-      source={{uri:arg.item.flag}}/>
-              <Text>{arg.item.capital}</Text>
+            <TouchableOpacity
+              onPress={() => this.props.navigation.navigate('Details', arg.item )}
+            >
+              <View>
+                <Text style={styles.nations}>{arg.item.name}</Text>
+                <Image style={{ width: 80, height: 80 }}
+                  source={{uri: `https://www.countryflags.io/${arg.item.alpha2Code}/flat/64.png`}}/>
+                <Text>{arg.item.capital}</Text>
 
-            </View>
+              </View>
+            </TouchableOpacity>
           }
         />
       </View>
