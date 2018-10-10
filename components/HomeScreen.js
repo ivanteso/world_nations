@@ -48,25 +48,13 @@ export default class HomeScreen extends React.Component {
             onChangeText={text => {
               this.setState({ query: text})
             }}
-<<<<<<< HEAD
             value={ this.state.query }
-            style={styles.input}
-||||||| merged common ancestors
-            style={styles.input}
-=======
->>>>>>> 71d4ddfbcf006098f067a4efa079fdd9c8b0958b
             placeholder={'Find a nation'}
           />
           <Button
-<<<<<<< HEAD
             title={'Press Me'}
             onPress={this.searchNation}
-||||||| merged common ancestors
-            title={'Press Me'}
-=======
-            title="Press me"
             style={styles.button}
->>>>>>> 71d4ddfbcf006098f067a4efa079fdd9c8b0958b
           />
 
         </View>
