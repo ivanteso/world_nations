@@ -12,7 +12,7 @@ export default createStackNavigator(
   {
     Home: {
       screen: HomeScreen,
-    }
+    },
   },
   {
     initialRouteName: 'Home',
