@@ -59,7 +59,7 @@ export default class HomeScreen extends React.Component {
             placeholder={'Find a nation'}
           />
           <Button
-            title={'Press Me'}
+            title={'Search'}
             onPress={this.searchNation}
             style={styles.button}
           />
@@ -79,13 +79,17 @@ export default class HomeScreen extends React.Component {
             <TouchableOpacity
               onPress={() => this.props.navigation.navigate('Details', arg.item )}
             >
-              <View>
-                <Text style={styles.nations}>{arg.item.name}</Text>
-                <Image style={{ width: 80, height: 80 }}
-                  source={{uri: `https://www.countryflags.io/${arg.item.alpha2Code}/flat/64.png`}}/>
-                <Text>{arg.item.capital}</Text>
-
+            <View style={styles.row}>
+            <View>
+              <Image style={styles.flag}
+                source={{uri: `https://www.countryflags.io/${arg.item.alpha2Code}/flat/64.png`}}/>
               </View>
+                <View style={styles.info}>
+                <Text style={styles.nations}>{arg.item.name}</Text>
+                <Text>{arg.item.capital}</Text>
+                </View>
+                </View>
+
             </TouchableOpacity>
           }
         />
@@ -96,19 +100,34 @@ export default class HomeScreen extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     alignItems: 'flex-start',
     justifyContent: 'flex-start',
     marginLeft:10,
   },
+  row: {
+    flexDirection:'row',
+    alignItems:'stretch',
+    borderBottomColor:'#333',
+    marginBottom:15,
+  },
+  info: {
+    textAlign:'left',
+  },
   nations: {
-    fontSize:24,
-    alignItems:'flex-start',
+    fontSize:20,
     marginBottom:5,
+  },
+  flag: {
+    width:80,
+    height:50,
+    marginRight:10,
   },
   search: {
     flexDirection: 'row',
-    alignItems: 'stretch'
+    alignItems: 'stretch',
+    marginBottom:20,
+    marginTop:10,
+    marginRight:10,
   },
   textInput: {
     height: 40,
